@@ -2,13 +2,11 @@ import numpy as np
 
 key = input("Enter key: ").replace(" ", "").lower()
 plain_text = input("Enter plain text: ").replace(" ", "").lower()
-keylist = []
 row1, column1, row2, column2 = 0, 0, 0, 0
 
 
 def key_matrix():
-    for c in key:
-        keylist.append(c)
+    keylist = [c for c in key]
     for c in range(97, 123):
         if len(keylist) == 25:
             break
