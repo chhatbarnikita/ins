@@ -72,7 +72,9 @@ def decryption(text):
     return decrypted_text
 
 
-matrix = key_matrix()
-cipher_text = encryption(plain_text)
-print("Cipher text: " + cipher_text)
-print("Decrypted text: " + decryption(cipher_text))
+if __name__ == '__main__':
+    matrix = key_matrix()
+    cipher_text = encryption(plain_text)
+    print("Cipher text: " + cipher_text)
+    print("Decrypted text: " + decryption(cipher_text))
+
