@@ -30,7 +30,8 @@ def decrypt(text):
     return temp
 
 
-cipher_text = encrypt(plaintext)
-print("Cipher text: " + cipher_text)
-decrypted_text = decrypt(cipher_text)
-print("Decrypted text: " + decrypted_text)
+if __name__ == '__main__':
+    cipher_text = encrypt(plaintext)
+    print("Cipher text: " + cipher_text)
+    decrypted_text = decrypt(cipher_text)
+    print("Decrypted text: " + decrypted_text)
