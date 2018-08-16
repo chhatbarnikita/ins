@@ -1,14 +1,15 @@
+#Following algorithm is only for 3*3 matrix
 import numpy as np
 
-# key = input("Enter key:").replace(" ", "").lower()
-# plaintext = input("Enter text:").replace(" ", "").lower()
-key = "gybnqkurp"
-plaintext = "actact"  #encryption: pohpoh
+#Enter key whose lenght is such that 3*3 matrix can be formed
+#Similarly length of the plain text must be multiple of 3
+key = input("Enter key:").replace(" ", "").lower()
+plaintext = input("Enter text:").replace(" ", "").lower()
+# plaintext = "actact" and key = "gybnqkurp"
+# encryption = "pohpoh"
 
 key_list = [(ord(c) % 97) for c in key]
 key_matrix = np.array(key_list).reshape(3, 3)
-key_transpose = np.transpose(key_matrix)
-print(key_matrix)
 
 
 def check_determinant():
@@ -57,11 +58,9 @@ def find_inverse(det_inv):
             minor = get_minor(i, j)
             cofactor = (minor[0][0] * minor[1][1]) - (minor[0][1] * minor[1][0]) #taking determinant of minor
             if (i == 0 and j == 1) or (i == 1 and j == 0) or (i == 1 and j == 2) or (i == 2 and j == 1):
-                cofactor = cofactor * (-1)
+                cofactor = cofactor * (-1) #changing signs for alternate cofactors
             adj_matrix.append(cofactor * det_inv)
-    print("Inverse matrix:")
     inv_matrix = np.transpose(np.array(adj_matrix).reshape(3, 3))
-    print(inv_matrix)
     return inv_matrix
 
 
@@ -69,8 +68,8 @@ def convert(text, matrix):
     converted_text = []
     for i in range(0, len(text)-2, 3):
         col = np.array([ord(text[i]) - 97, ord(text[i+1]) - 97, ord(text[i+2]) - 97])
-        mul_col = list(np.remainder(np.matmul(matrix, col), 26) + 97)
-        converted_text += [chr(c) for c in mul_col]
+        new_col = list(np.remainder(np.matmul(matrix, col), 26) + 97) #multiplication of key with column of plaintext
+        converted_text += [chr(c) for c in new_col]
     return converted_text
 
 
@@ -90,8 +89,8 @@ def decrypt(cipher):
 
 if __name__ == '__main__':
     cipher_text = encrypt()
+    print("Encrypted text: " + str(cipher_text))
     decrypted_text = decrypt(cipher_text)
-    print("Decrypted text: ")
-    print(decrypted_text)
+    print("Decrypted text: " + str(decrypted_text))
 
 
