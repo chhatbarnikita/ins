@@ -1,9 +1,5 @@
 import numpy as np
 
-key = input("Enter key: ").replace(" ", "").lower()
-plain_text = input("Enter plain text: ").replace(" ", "").lower()
-row1, column1, row2, column2 = 0, 0, 0, 0
-
 
 def key_matrix():
     keylist = [c for c in key]
@@ -73,6 +69,9 @@ def decryption(text):
 
 
 if __name__ == '__main__':
+    key = input("Enter key: ").replace(" ", "").lower()
+    plain_text = input("Enter plain text: ").replace(" ", "").lower()
+    row1, column1, row2, column2 = 0, 0, 0, 0
     matrix = key_matrix()
     cipher_text = encryption(plain_text)
     print("Cipher text: " + cipher_text)

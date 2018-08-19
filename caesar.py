@@ -1,7 +1,3 @@
-key = int(input("Enter key: ")).replace(" ", "").lower()
-plainText = input("Enter plain text: ").replace(" ", "").lower()
-
-
 def encrypt(text):
     temp = ''
     for c in text:
@@ -23,6 +19,8 @@ def decrypt(text):
 
 
 if __name__ == '__main__':
-    cipherText = encrypt(plainText)
-    print("Encrypted text: " + cipherText)
-    print("Decrypted text: " + decrypt(cipherText))
+    key = int(input("Enter key: ")).replace(" ", "").lower()
+    plaintext = input("Enter plain text: ").replace(" ", "").lower()
+    cipher_text = encrypt(plaintext)
+    print("Encrypted text: " + cipher_text)
+    print("Decrypted text: " + decrypt(cipher_text))
