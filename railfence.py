@@ -1,13 +1,14 @@
 from math import ceil
 
-def encrypt(plaintext):
-    text = [plaintext[i] for i in range(0, len(plaintext), 2)] + [plaintext[i] for i in range(1, len(plaintext), 2)]
-    if len(plaintext) % 2 != 0:
-        text.append("?")
-    return "".join(text)
+
+def encrypt(text):
+    encrypted_text = [text[i] for i in range(0, len(text), 2)] + [text[i] for i in range(1, len(text), 2)]
+    return "".join(encrypted_text)
 
 
 def decrypt(text):
+    if len(text) % 2 != 0:
+        text += '?'
     i, j = 0, ceil(len(text)/2)
     decrypted_text = ''
     for k in range(0, ceil(len(text)/2)):
@@ -18,7 +19,7 @@ def decrypt(text):
 
 
 if __name__ == '__main__':
-    text = input("Enter text: ")
-    cipher_text = encrypt(text)
+    plaintext = input("Enter text: ")
+    cipher_text = encrypt(plaintext)
     print("Encrypted text: " + cipher_text)
     print("Decrypted text: " + decrypt(cipher_text))
