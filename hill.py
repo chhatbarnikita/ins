@@ -1,16 +1,6 @@
 #Following algorithm is only for 3*3 matrix
 import numpy as np
 
-#Enter key whose lenght is such that 3*3 matrix can be formed
-#Similarly length of the plain text must be multiple of 3
-key = input("Enter key:").replace(" ", "").lower()
-plaintext = input("Enter text:").replace(" ", "").lower()
-# plaintext = "actact" and key = "gybnqkurp"
-# encryption = "pohpoh"
-
-key_list = [(ord(c) % 97) for c in key]
-key_matrix = np.array(key_list).reshape(3, 3)
-
 
 def check_determinant():
     if np.linalg.det(key_matrix) != 0:
@@ -57,9 +47,9 @@ def find_inverse(det_inv):
         for j in range(3):
             minor = get_minor(i, j)
             cofactor = (minor[0][0] * minor[1][1]) - (minor[0][1] * minor[1][0]) #taking determinant of minor
-            if (i == 0 and j == 1) or (i == 1 and j == 0) or (i == 1 and j == 2) or (i == 2 and j == 1):
-                cofactor = cofactor * (-1) #changing signs for alternate cofactors
             adj_matrix.append(cofactor * det_inv)
+    for i in range(1, len(adj_matrix), 2):
+        adj_matrix[i] *= (-1)
     inv_matrix = np.transpose(np.array(adj_matrix).reshape(3, 3))
     return inv_matrix
 
@@ -70,7 +60,7 @@ def convert(text, matrix):
         col = np.array([ord(text[i]) - 97, ord(text[i+1]) - 97, ord(text[i+2]) - 97])
         new_col = list(np.remainder(np.matmul(matrix, col), 26) + 97) #multiplication of key with column of plaintext
         converted_text += [chr(c) for c in new_col]
-    return converted_text
+    return "".join(converted_text)
 
 
 def encrypt():
@@ -88,6 +78,17 @@ def decrypt(cipher):
 
 
 if __name__ == '__main__':
+    # Enter key whose length is such that 3*3 matrix can be formed
+    # Similarly length of the plain text must be multiple of 3
+
+    key = input("Enter key:").replace(" ", "").lower()
+    plaintext = input("Enter text:").replace(" ", "").lower()
+    # plaintext = "actact" and key = "gybnqkurp"
+    # encryption = "pohpoh"
+
+    key_list = [(ord(c) % 97) for c in key]
+    key_matrix = np.array(key_list).reshape(3, 3)
+
     cipher_text = encrypt()
     print("Encrypted text: " + str(cipher_text))
     decrypted_text = decrypt(cipher_text)
