@@ -19,7 +19,7 @@ def decrypt(text):
 
 
 if __name__ == '__main__':
-    key = int(input("Enter key: ")).replace(" ", "").lower()
+    key = int(input("Enter key: "))
     plaintext = input("Enter plain text: ").replace(" ", "").lower()
     cipher_text = encrypt(plaintext)
     print("Encrypted text: " + cipher_text)
