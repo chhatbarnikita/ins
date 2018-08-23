@@ -28,10 +28,10 @@ def decrypt(text):
 
 
 if __name__ == '__main__':
-    # key = input("Enter key (in digits): ")
-    # plaintext = input("Enter text: ")
-    key = "253164"
-    plaintext = "nikitachhatbar"
+    key = input("Enter key (in digits): ")
+    plaintext = input("Enter text: ")
+    # key = "253164"
+    # plaintext = "cryptography"
     cipher_text = encrypt(plaintext)
     print("Encrypted text: " + cipher_text)
     print("Decrypted text: " + decrypt(cipher_text))
